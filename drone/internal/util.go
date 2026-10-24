@@ -36,7 +36,7 @@ func NewClient(c *cli.Context) (drone.Client, error) {
 
 	// attempt to find system CA certs
 	certs, err := x509.SystemCertPool()
-	if err != nil {
+	if err != nil && !skip {
 		return nil, fmt.Errorf("load system CA certificates: %w", err)
 	}
 	tlsConfig := &tls.Config{
