@@ -4,6 +4,14 @@ Command line client for the Drone continuous integration server.
 
 Documentation: https://docs.drone.io/cli
 
+## Build requirements
+
+Go 1.26.10 or newer is required to build the CLI.
+
+The CI Go image and the amd64/arm64 Linux runtime images come from the authenticated HHI registry at `harness0.harness.io`. Local Docker builds require an authorized `docker login harness0.harness.io`; CI runners must have equivalent image-pull credentials configured before starting the pipeline. The ARMv7 runtime uses public Alpine, but its CI Go image still requires HHI access.
+
+Each Linux Dockerfile defaults to its named architecture. Building its package-install stages requires a compatible worker or container emulation.
+
 ## Release procedure
 
 Run the changelog generator.
