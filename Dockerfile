@@ -1,12 +1,11 @@
-ARG DRONE_PLATFORM=linux/amd64
-FROM --platform=${DRONE_PLATFORM} harness0.harness.io/oci/docker_artifacts/hhi/harnessos-alpine:1@sha256:290a37c85b4284d2c11fa0778e5da79643d912a1f5a57d6f701b77644503b7e7 AS alpine
-RUN apk add -U --no-cache ca-certificates
+FROM amd64/alpine:3.20@sha256:0d2a3e86a16d902509fb9dc0aea896f7689506be44b0ba6f12bb72252aaa276f as alpine
+RUN apk add -U --no-cache 'ca-certificates>=20261020-r0'
 
-FROM --platform=${DRONE_PLATFORM} harness0.harness.io/oci/docker_artifacts/hhi/harnessos-alpine:1@sha256:290a37c85b4284d2c11fa0778e5da79643d912a1f5a57d6f701b77644503b7e7
-ENV GODEBUG=netdns=go
+FROM amd64/alpine:3.20@sha256:0d2a3e86a16d902509fb9dc0aea896f7689506be44b0ba6f12bb72252aaa276f
+ENV GODEBUG netdns=go
 
 # Add security updates
-RUN apk add -U --no-cache ca-certificates zlib openssl busybox && \
+RUN apk add -U --no-cache 'ca-certificates>=20261020-r0' zlib openssl busybox && \
     # Create a non-root user
     addgroup -S drone && \
     adduser -S -G drone drone
