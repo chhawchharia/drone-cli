@@ -21,8 +21,6 @@ steps:
 - name: publish linux
   image: plugins/docker
   settings:
-    pull_image: true
-    no_cache: true
     repo: drone/cli
     username:
       from_secret: docker_username
@@ -64,8 +62,6 @@ steps:
 - name: publish_linux_arm
   image: plugins/docker
   settings:
-    pull_image: true
-    no_cache: true
     repo: drone/cli
     username:
       from_secret: docker_username
@@ -83,8 +79,6 @@ steps:
 - name: publish_linux_arm64
   image: plugins/docker
   settings:
-    pull_image: true
-    no_cache: true
     repo: drone/cli
     username:
       from_secret: docker_username
